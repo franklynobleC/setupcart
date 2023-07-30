@@ -41,6 +41,7 @@ export const reducer = (state, action) => {
     let { total, amount } = state.cart.reduce(
       //iterate over  the array,  get  the Cart total in the Array, and the cartItem
       (cartTotal, cartItem) => {
+        console.log(cartTotal, cartItem)
         //from  cartItem, remove  the Amount and  price, by destructuring
         const { price, amount } = cartItem
         const itemTotal = price * amount
@@ -48,7 +49,7 @@ export const reducer = (state, action) => {
         cartTotal.total += itemTotal
         cartTotal.amount += amount
 
-        console.log(price, amount)
+        // console.log(price, amount)
         return cartTotal
       },
       {
