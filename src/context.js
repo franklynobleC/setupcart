@@ -35,14 +35,15 @@ const AppProvider = ({ children }) => {
     dispatch({ type: 'DECREASE', payload: id })
   }
 
+  //Fetch Data from Api
   const fetchData = async () => {
     dispatch({ type: 'LOADING' })
 
     const response = await fetch(url)
 
-    const cart = await response.json()
+    const cartItemData = await response.json()
 
-    dispatch({ type: 'DISPLAY_ITEMS', payload: cart })
+    dispatch({ type: 'DISPLAY_ITEMS', payload: cartItemData })
   }
   useEffect(() => {
     fetchData()
