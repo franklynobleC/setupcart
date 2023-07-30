@@ -1,4 +1,4 @@
-import CartItem from './CartItem'
+// All Datas  in This  page are called  from    context.js
 
 export const reducer = (state, action) => {
   if (action.type === 'CLEAR_CART') {
@@ -41,7 +41,7 @@ export const reducer = (state, action) => {
     let { total, amount } = state.cart.reduce(
       //iterate over  the array,  get  the Cart total in the Array, and the cartItem
       (cartTotal, cartItem) => {
-        console.log(cartTotal, cartItem)
+        // console.log(cartTotal, cartItem)
         //from  cartItem, remove  the Amount and  price, by destructuring
         const { price, amount } = cartItem
         const itemTotal = price * amount
@@ -60,6 +60,14 @@ export const reducer = (state, action) => {
     total = parseFloat(total.toFixed(2)) // this would  limit the  floating  to 2 after Decimal  places
 
     return { ...state, total, amount }
+  }
+
+  if (action.type === 'LOADING') {
+    return { ...state, loading: true }
+  }
+
+  if (action.type === 'DISPLAY_ITEMS') {
+    return { ...state, cart: action.payload, loading: false }
   }
 
   return state
